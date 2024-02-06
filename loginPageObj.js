@@ -17,8 +17,18 @@ export class LoginPage {
     cy.get('div[aria-label="Wrong Password"]').should('be.visible')
     cy.get('nav[data-auto-id="main-nav"]').should('be.visible')
     // assertions to verify the proper user and displaying of the navigation list
+    OR
+
+    
+    cy.visit('/')
+    cy.get('[id="signInForm"]').then( form => {
+        cy.wrap(form).find('[id="EmailLabel"]').type(Cypress.env(`${email}`))
+        cy.wrap(form).find('[id="Password"]').type(Cypress.env(`${password}`),  { log: false })
+        cy.wrap(form).submit()
+ 
   }
 
+  
 }
 
 export const actionLogin = new LoginPage();
